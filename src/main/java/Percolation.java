@@ -41,7 +41,7 @@ public class Percolation {
             store[seq] = seq;
         }
         // connect to nodes around
-        probeAndConnect(seq, new int[]{ seq - 1, seq + 1, seq - edgeLength, seq + edgeLength });
+        probeAndConnect(seq);
         opens++;
     }
 
@@ -57,11 +57,22 @@ public class Percolation {
         return size;
     }
 
-    private void probeAndConnect(int seq, int[] targets) {
-        for(int target : targets){
-            if(target > 0 && target <= size && store[target] != -1) {
-                union(seq, target);
-            }
+    private void probeAndConnect(int seq) {
+        // if not on the very left, connect the left one
+        if(seq % edgeLength != 1 && seq - 1 > 0 && store[seq - 1] >= 0) {
+            union(seq, seq - 1);
+        }
+        // if not on the very right, connect the right one
+        if(seq % edgeLength != 0 && seq + 1 <= size && store[seq + 1] >= 0) {
+            union(seq, seq + 1);
+        }
+        // if not on the first row, connect the upper one
+        if(seq - edgeLength > 0 && store[seq - edgeLength] >= 0) {
+            union(seq, seq - edgeLength);
+        }
+        // if not on the last row, connect the lower one
+        if(seq + edgeLength <= size && store[seq + edgeLength] >= 0) {
+            union(seq, seq + edgeLength);
         }
     }
 
