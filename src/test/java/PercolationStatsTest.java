@@ -11,7 +11,7 @@ public class PercolationStatsTest {
 
     @Before
     public void init() {
-        ps = new PercolationStats(100, 100);
+        ps = new PercolationStats(2, 10000);
     }
 
     @Test

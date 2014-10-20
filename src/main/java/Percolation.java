@@ -33,7 +33,7 @@ public class Percolation {
         if(seq > 0 && seq <= edgeLength) {
             // the first row should connect to the top
             store[seq] = 0;
-        } else if(seq >= size - 2 && seq <= size) {
+        } else if(seq >= size - edgeLength + 1 && seq <= size) {
             // the last row should connect to the bottom
             store[seq] = size + 1;
         } else {
@@ -48,14 +48,15 @@ public class Percolation {
     public boolean percolates() {
         return connected(0, size + 1);
     }
-
-    public int getOpens() {
-        return opens;
-    }
-
-    public int getSize() {
-        return size;
-    }
+    /* Removed these apis required by coursera */
+//
+//    public int getOpens() {
+//        return opens;
+//    }
+//
+//    public int getSize() {
+//        return size;
+//    }
 
     private void probeAndConnect(int seq) {
         // if not on the very left, connect the left one
