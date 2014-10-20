@@ -86,6 +86,9 @@ public class Percolation {
     private void union(int i, int j) {
         int r1 = root(i);
         int r2 = root(j);
+        if(r1 == r2) {
+            return;
+        }
         if(weight[r1] < weight[r2]) {
             store[r1] = r2;
             weight[r2] += weight[r1];

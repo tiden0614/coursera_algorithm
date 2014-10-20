@@ -58,19 +58,17 @@ public class PercolationStats {
     }
 
     private double getOneThreshold() {
-        int threshold = 0;
         Percolation p = new Percolation(n);
         // FIXME is this random renderer causing the difference between my statistical numbers and the official's?
         StdRandom.shuffle(seq);
         int index = 0;
-        while(!p.percolates() && threshold <= n * n) {
+        while(!p.percolates() && p.getOpens() <= n * n) {
             int randint = seq[index++] + 1;
             int x = (randint / n) + 1;
             int y = randint % n;
             p.open(x, y);
-            threshold = p.getOpens();
         }
-        return ((double) threshold) / p.getSize();
+        return ((double) p.getOpens()) / p.getSize();
     }
 
     public static void main(String[] args) {
