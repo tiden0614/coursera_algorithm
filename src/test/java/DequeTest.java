@@ -16,6 +16,15 @@ public class DequeTest {
     }
 
     @Test
+    public void testAddLast() {
+        Deque<String> deque = new Deque<String>();
+        deque.addLast("first");
+        deque.addLast("second");
+        deque.addLast("third");
+        assertEquals(deque.size(), 3);
+    }
+
+    @Test
     public void testRemove() {
         Deque<String> deque = new Deque<String>();
         deque.addFirst("first");
